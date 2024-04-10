@@ -6,9 +6,20 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-	<div class="content">
-		<canvas height="600" width="600" id="canvas"></canvas>
+	<div class="container">
+		<div class="slider-container">
+			<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+			<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+			<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+		</div>
+		<div class="title-container">
+			<h2 class="title-slider">Alignment</h2>
+			<h2 class="title-slider">Cohesion</h2>
+			<h2 class="title-slider">Separation</h2>
+		</div>
 	</div>
+	<canvas height="600" width="600" id="canvas"></canvas>
+
 	<script src="./boid.js"></script>
 	<script src="./script.js"></script>
 </body>

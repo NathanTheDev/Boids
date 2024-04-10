@@ -29,7 +29,7 @@ class Boid {
       y: this.velocity.y / ACCELERATION_CHANGE,
     };
 
-    this.color = `hsl(200, 100%, 50%)`;
+    this.color = `hsl(266, 30%, 63%)`;
   }
 
   draw() {

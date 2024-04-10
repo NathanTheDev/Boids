@@ -1,5 +1,5 @@
 // constants
-const NUM_BOIDS = 10;
+const NUM_BOIDS = 50;
 
 // Setup canvas
 const canvas = document.getElementById("canvas");
@@ -11,6 +11,7 @@ const flock = [];
 
 const updateBoids = () => {
   for (let boid of flock) {
+    boid.setAlignment(flock);
     boid.draw();
     boid.update();
   }

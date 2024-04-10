@@ -11,7 +11,7 @@ const flock = [];
 
 const updateBoids = () => {
   for (let boid of flock) {
-    boid.setAlignment(flock);
+    boid.steer(flock);
     boid.draw();
     boid.update();
   }

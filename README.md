@@ -9,3 +9,4 @@ A basic implementation of the Craig Reynolds Algorithm using JavaScript and the 
 
 ### To Do
 - Implement Quad Tree Optimisation
+- Add functionality to sliders

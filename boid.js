@@ -1,12 +1,12 @@
 // constants
-const MIN_STARTING_VELOCITY = -2;
-const MAX_STARTING_VELOCITY = 2;
-const MAX_VELOCITY = 2;
+const MIN_STARTING_VELOCITY = -0.5;
+const MAX_STARTING_VELOCITY = 0.5;
+const MAX_VELOCITY = 1;
 const ACCELERATION_CHANGE = 1000;
-const RADUIS = 1;
-const VIEW_RADIUS = 3;
-const MAX_FORCE = 10;
-const MAX_ACCELERATION = 0.1;
+const RADUIS = 3;
+const VIEW_RADIUS = 12 * RADUIS;
+const MAX_FORCE = 0.05;
+// const MAX_ACCELERATION = 0.1;
 
 class Boid {
   constructor() {
@@ -61,8 +61,8 @@ class Boid {
         Math.abs(this.position.x - boid.position.x) <= VIEW_RADIUS &&
         Math.abs(this.position.y - boid.position.y) <= VIEW_RADIUS
       ) {
-        steering.x += boid.position.x;
-        steering.y += boid.position.y;
+        steering.x += boid.velocity.x;
+        steering.y += boid.velocity.y;
         total++;
       }
     }
@@ -70,11 +70,21 @@ class Boid {
     if (total) {
       steering.x /= total;
       steering.y /= total;
+
+      steering.x -= this.velocity.x;
+      steering.y -= this.velocity.y;
+      steering.x /= 100;
+      steering.y /= 100;
+
       if (steering.x > MAX_FORCE) {
         steering.x = MAX_FORCE;
+      } else if (Math.abs(steering.x) > MAX_FORCE) {
+        steering.x = -MAX_FORCE;
       }
       if (steering.y > MAX_FORCE) {
         steering.y = MAX_FORCE;
+      } else if (Math.abs(steering.y) > MAX_FORCE) {
+        steering.y = -MAX_FORCE;
       }
     }
 
@@ -86,16 +96,16 @@ class Boid {
     this.acceleration.x += alignment.x;
     this.acceleration.y += alignment.y;
 
-    if (this.acceleration.x >= MAX_ACCELERATION) {
-      this.acceleration.x = MAX_ACCELERATION;
-    } else if (Math.abs(this.acceleration.x) >= MAX_ACCELERATION) {
-      this.acceleration.x = -MAX_ACCELERATION;
-    }
-    if (this.acceleration.y >= MAX_ACCELERATION) {
-      this.acceleration.y = MAX_ACCELERATION;
-    } else if (Math.abs(this.acceleration.y) >= MAX_ACCELERATION) {
-      this.acceleration.y = -MAX_ACCELERATION;
-    }
+    // if (this.acceleration.x >= MAX_ACCELERATION) {
+    //   this.acceleration.x = MAX_ACCELERATION;
+    // } else if (Math.abs(this.acceleration.x) >= MAX_ACCELERATION) {
+    //   this.acceleration.x = -MAX_ACCELERATION;
+    // }
+    // if (this.acceleration.y >= MAX_ACCELERATION) {
+    //   this.acceleration.y = MAX_ACCELERATION;
+    // } else if (Math.abs(this.acceleration.y) >= MAX_ACCELERATION) {
+    //   this.acceleration.y = -MAX_ACCELERATION;
+    // }
   }
 
   update() {

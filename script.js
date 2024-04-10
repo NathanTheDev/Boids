@@ -1,5 +1,5 @@
 // constants
-const NUM_BOIDS = 50;
+const NUM_BOIDS = 100;
 
 // Setup canvas
 const canvas = document.getElementById("canvas");
